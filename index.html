@@ -15,20 +15,22 @@
 
 <body>
     <div class="text-center">
-        <h1>Youtube SRT maker 1.0</h1>
+        <h1>Youtube SRT maker</h1>
         <p>Enter Youtube video URL: </p>
         <input type="text" id="videoUrl" placeholder="Youtube video URL" style="width: 400px;">
         <button class="m-1 btn btn-primary" onclick="youtube_parser()">Load Video</button>
-
-        <div class="embed-responsive embed-responsive-16by9">
-            <iframe id="myFrame" width="515" height="386" src="" frameborder="1" name="video"
-                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" autoplay></iframe>
+        <div class="col-sm-12">
+            <div class="embed-responsive embed-responsive-16by9">
+                <iframe id="myFrame" width="350" height="300" src="" frameborder="1" name="video"
+                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" autoplay></iframe>
+            </div>
         </div>
 
-        <div>
+        <div class="col-sm-12">
             <!-- <textarea name="" id="" cols="90" rows="10"></textarea> -->
-            <textarea id="my-textarea" cols="90" rows="10" placeholder=" Notes here...">
+            <textarea id="my-textarea" cols="50" rows="10" placeholder=" Notes here...">
              </textarea>
+             <br>
             <button class="ml-1 btn btn-success" type="button" onclick="download()">Save</button>
         </div>
     </div>
