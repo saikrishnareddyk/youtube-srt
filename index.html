@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <title>Srt Maker v:1.0</title>
+</head>
+
+<body>
+    <div class="text-center">
+        <h1>Youtube SRT maker 1.0</h1>
+        <p>Enter Youtube video URL: </p>
+        <input type="text" id="videoUrl" placeholder="Youtube video URL" style="width: 400px;">
+        <button class="m-1 btn btn-primary" onclick="youtube_parser()">Load Video</button>
+
+        <div class="embed-responsive embed-responsive-16by9">
+            <iframe id="myFrame" width="515" height="386" src="" frameborder="1" name="video"
+                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" autoplay></iframe>
+        </div>
+
+        <div>
+            <!-- <textarea name="" id="" cols="90" rows="10"></textarea> -->
+            <textarea id="my-textarea" cols="90" rows="10" placeholder=" Notes here...">
+             </textarea>
+            <button class="ml-1 btn btn-success" type="button" onclick="download()">Save</button>
+        </div>
+    </div>
+
+
+    <script>
+
+        //get youtube video URL make ID seperate and emebede in IFRAME TAG      
+        function youtube_parser() {
+            var videoUrl = document.getElementById("videoUrl").value
+            debugger
+            var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
+            var match = videoUrl.match(regExp);
+            if (match && match[7].length == 11) {
+                var videoID = match[7];
+                showVideo(videoID)
+            } else {
+                alert("Url incorrect");
+            }
+        }
+
+        function showVideo(id) {
+            document.getElementById("myFrame").src = `https://www.youtube.com/embed/${id}`
+        }
+
+        function download() {
+            var text = document.getElementById("my-textarea").value;
+            text = text.replace(/\n/g, "\r\n"); // To retain the Line breaks.
+            var blob = new Blob([text], { type: "text/plain" });
+            var anchor = document.createElement("a");
+            var date = new Date();
+            anchor.download = `${date}.txt`;
+            anchor.href = window.URL.createObjectURL(blob);
+            anchor.target = "_blank";
+            anchor.style.display = "none"; // just to be safe!
+            document.body.appendChild(anchor);
+            anchor.click();
+            document.body.removeChild(anchor);
+        }
+    </script>
+
+</body>
+
+</html>
