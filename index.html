@@ -11,6 +11,21 @@
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
     <title>Srt Maker v:1.0</title>
+<style>
+    .videoWrapper {
+	position: relative;
+	padding-bottom: 56.25%; /* 16:9 */
+	padding-top: 25px;
+	height: 0;
+}
+.videoWrapper iframe {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+</style>
 </head>
 
 <body>
@@ -19,15 +34,15 @@
         <p>Enter/ Paste  Youtube video URL: </p>
         <input type="text" id="videoUrl" placeholder="Youtube video URL" style="width: 400px;">
         <button class="m-1 btn btn-primary" onclick="youtube_parser()">Load Video</button>
-        <div class="col-sm-12">
-            <div class="embed-responsive embed-responsive-16by9">
-                <iframe id="myFrame" src="" width="400" height="200" frameborder="1" name="video"
-                    allow="picture-in-picture" autoplay></iframe>
-            </div>
+
+        <div class="videoWrapper m-1">
+            <iframe id="myFrame" src="" frameborder="0" name="video"
+                allow="picture-in-picture" autoplay></iframe>
         </div>
+        
 
         <div class="col-sm-12">
-            <textarea id="my-textarea" cols="60" rows="10" placeholder=" Notes here...">
+            <textarea id="my-textarea"  rows="10" class="form-control" placeholder=" Notes here...">
              </textarea>
              <br>
             <button class="ml-1 btn btn-success" type="button" onclick="download()">Save</button>
